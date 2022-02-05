@@ -19,6 +19,9 @@ export default class Navbar extends Component {
                     {this.props.loggedIn ? (
                         <>
                             <li className="nav-item">
+                                <Link className="nav-link" to="/newpost">Create Post</Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link" to="#" onClick={() => this.props.logout()}>Logout</Link>
                             </li>
                         </>
