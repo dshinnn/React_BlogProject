@@ -37,7 +37,7 @@ export default class App extends Component {
             <Route path='/' element={<Posts />}/>
             <Route path='register' element={<Register />} />
             <Route path='login' element={<Login logIn={this.login}/>} />
-            <Route path='/blog/posts/:postId' element={<SinglePost />} />
+            <Route path='/blog/posts/:postId' element={<SinglePost token={this.state.loggedIn}/>} />
             <Route path='/newpost' element={<NewPost token={this.state.loggedIn}/>} />
           </Routes>
         </div>
