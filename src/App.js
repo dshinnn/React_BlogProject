@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Register from './views/Register';
+import Login from './views/Login';
+import Posts from './views/Posts';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedIn: null
+    }
+  }
+
+  login = (token) => {
+    this.setState({
+      loggedIn: token
+    })
+  }
+
+  logout = () => {
+    this.setState({
+      loggedIn: null
+    })
+    console.log('You have been logged out.')
+  }
+
+  render() {
+    return (
+      <>
+        <Navbar loggedIn={this.state.loggedIn} logout={this.logout} />
+        <div className='container'>
+          <Routes>
+            <Route path='/' element={<Posts />}/>
+            <Route path='register' element={<Register />} />
+            <Route path='login' element={<Login logIn={this.login}/>} />
+          </Routes>
+        </div>
+      </>
+    );
+  }
 }
-
-export default App;
