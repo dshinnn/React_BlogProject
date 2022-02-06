@@ -7,6 +7,7 @@ import Posts from './views/Posts';
 import SinglePost from './views/SinglePost';
 import NewPost from './views/NewPost';
 import Alert from './components/Alert'
+import UpdatePost from './views/UpdatePost';
 
 export default class App extends Component {
   constructor(props) {
@@ -52,11 +53,10 @@ export default class App extends Component {
             <Route path='login' element={<Login logIn={this.login} flashMessage={this.flashMessage}/>} />
             <Route path='/blog/posts/:postId' element={<SinglePost token={this.state.loggedIn}/>} />
             <Route path='/newpost' element={<NewPost token={this.state.loggedIn} flashMessage={this.flashMessage}/>} />
+            <Route path='/blog/posts/:postId/edit' element={<UpdatePost token={this.state.loggedIn} flashMessage={this.flashMessage}/>} />
           </Routes>
         </div>
       </>
     );
   }
 }
-
-// TO-DO: Update post and flash message

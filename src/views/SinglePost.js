@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate, Navigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 export default function SinglePost (props) {
     const [post, setPost] = useState({})
@@ -37,7 +37,7 @@ export default function SinglePost (props) {
                     <h5 className="card-title fw-bold fs-3">{ post.title }</h5>
                     {/* <h6 className="card-subtitle mb-2 text-muted">{ post.author.username }</h6> */}
                     <p className="card-text">{ post.content }</p>
-                    <button href="#" className="btn btn-primary btn-sm me-2">Update</button>
+                    <Link to={`/blog/posts/${post.id}/edit`} className="btn btn-primary btn-sm me-2">Update</Link>
                     <button className='btn btn-danger btn-sm' onClick={handleDelete}>Delete</button>
                 </div>
             </div>

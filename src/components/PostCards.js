@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SinglePost from '../views/SinglePost';
 import { Link } from 'react-router-dom';
 
 export default class PostCards extends Component {
