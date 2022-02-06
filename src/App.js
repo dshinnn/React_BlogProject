@@ -6,12 +6,15 @@ import Login from './views/Login';
 import Posts from './views/Posts';
 import SinglePost from './views/SinglePost';
 import NewPost from './views/NewPost';
+import Alert from './components/Alert'
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: null
+      loggedIn: null,
+      message: null,
+      category: null
     }
   }
 
@@ -28,20 +31,32 @@ export default class App extends Component {
     console.log('You have been logged out.')
   }
 
+  flashMessage = (message, category='primary') => {
+    this.setState({
+      message, category
+    })
+  }
+
   render() {
     return (
       <>
         <Navbar loggedIn={this.state.loggedIn} logout={this.logout} />
         <div className='container'>
+          { this.state.message ? (
+            <Alert message={this.state.message} category={this.state.category} flashMessage={this.flashMessage} />
+          ) : null }
+          
           <Routes>
             <Route path='/' element={<Posts />}/>
-            <Route path='register' element={<Register />} />
-            <Route path='login' element={<Login logIn={this.login}/>} />
+            <Route path='register' element={<Register />} flashMessage={this.flashMessage}/>
+            <Route path='login' element={<Login logIn={this.login} flashMessage={this.flashMessage}/>} />
             <Route path='/blog/posts/:postId' element={<SinglePost token={this.state.loggedIn}/>} />
-            <Route path='/newpost' element={<NewPost token={this.state.loggedIn}/>} />
+            <Route path='/newpost' element={<NewPost token={this.state.loggedIn} flashMessage={this.flashMessage}/>} />
           </Routes>
         </div>
       </>
     );
   }
 }
+
+// TO-DO: Update post and flash message

@@ -16,8 +16,8 @@ export default function Login(props) {
             headers: myHeaders
         }).then(res => res.json())
             .then(data => {
-                console.log(data['token']);
                 props.logIn(data['token']);
+                props.flashMessage('You have successfully logged in', 'success');
                 navigate('/');
             })
     }
