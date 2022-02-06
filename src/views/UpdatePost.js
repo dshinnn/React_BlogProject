@@ -13,10 +13,10 @@ export default function UpdatePost (props) {
                 .then(res => res.json())
                 .then(data => {
                     if (cancel) return;
-                    console.log(data); 
                     setTitle(data.title);
                     setContent(data.content);
-                })                   
+                })
+                .catch(error => props.flashMessage(error, 'danger'));                   
         return () => { cancel = true }
     }, []);
 
@@ -40,8 +40,8 @@ export default function UpdatePost (props) {
             body: data
         }).then(res => res.json())
             .then(data => {
-                console.log(data);
-                navigate(`/blog/posts/${postId}`)
+                props.flashMessage('Your post has been successfully updated!', 'success');
+                navigate(`/blog/posts/${postId}`);
             })
     }
 

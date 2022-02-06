@@ -11,7 +11,6 @@ export default function SinglePost (props) {
         fetch(`https://kekambas-blog.herokuapp.com/blog/posts/${postId}`)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             setPost(data)
         })
     }, [postId])
@@ -25,8 +24,8 @@ export default function SinglePost (props) {
             headers: myHeaders
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
-                navigate('/')
+                props.flashMessage('Your post has been successfully deleted!', 'success');
+                navigate('/');
             })
     }
 
@@ -37,8 +36,13 @@ export default function SinglePost (props) {
                     <h5 className="card-title fw-bold fs-3">{ post.title }</h5>
                     {/* <h6 className="card-subtitle mb-2 text-muted">{ post.author.username }</h6> */}
                     <p className="card-text">{ post.content }</p>
-                    <Link to={`/blog/posts/${post.id}/edit`} className="btn btn-primary btn-sm me-2">Update</Link>
-                    <button className='btn btn-danger btn-sm' onClick={handleDelete}>Delete</button>
+                    {props.token ? (
+                        <>
+                            <Link to={`/blog/posts/${post.id}/edit`} className="btn btn-primary btn-sm me-2">Update</Link>
+                            <button className='btn btn-danger btn-sm' onClick={handleDelete}>Delete</button>
+                        </>
+                    ): null}
+                    
                 </div>
             </div>
         </>

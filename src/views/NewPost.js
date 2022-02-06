@@ -24,7 +24,7 @@ export default function NewPost(props) {
             body: data
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
+                props.flashMessage('Posted!', 'secondary')
                 navigate('/')
             })
     }

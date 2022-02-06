@@ -51,7 +51,7 @@ export default class App extends Component {
             <Route path='/' element={<Posts />}/>
             <Route path='register' element={<Register />} flashMessage={this.flashMessage}/>
             <Route path='login' element={<Login logIn={this.login} flashMessage={this.flashMessage}/>} />
-            <Route path='/blog/posts/:postId' element={<SinglePost token={this.state.loggedIn}/>} />
+            <Route path='/blog/posts/:postId' element={<SinglePost token={this.state.loggedIn} flashMessage={this.flashMessage}/>} />
             <Route path='/newpost' element={<NewPost token={this.state.loggedIn} flashMessage={this.flashMessage}/>} />
             <Route path='/blog/posts/:postId/edit' element={<UpdatePost token={this.state.loggedIn} flashMessage={this.flashMessage}/>} />
           </Routes>

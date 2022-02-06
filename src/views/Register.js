@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Register(props) {
@@ -12,8 +12,8 @@ export default function Register(props) {
         let confirmPass = e.target.confirmPass.value;
 
 
-        if (password != confirmPass) {
-            console.log('Password do not match, please try again.');
+        if (password !== confirmPass) {
+            props.flashMessage('Passwords do not match, please try again.', 'danger');
             navigate('/register');
         }
 
@@ -32,8 +32,9 @@ export default function Register(props) {
             body: data
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
-                navigate('/')
+                console.log(data);
+                // props.flashMessage('Thank you for registering!', 'success');
+                navigate('/');
             })
     }
     return (
